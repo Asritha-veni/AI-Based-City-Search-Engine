@@ -1,1 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI-Based City Search Engine</title>
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #eaf2f8;
+            text-align: center;
+            padding: 30px;
+        }
 
+        .container {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            max-width: 650px;
+            margin: auto;
+        }
+
+        input {
+            padding: 12px;
+            width: 60%;
+        }
+
+        button {
+            padding: 12px;
+            background: #2874a6;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 25px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>AI-Based City Search Engine</h1>
+
+    <form method="POST">
+        <input type="text" name="city"
+               placeholder="Enter city name" required>
+        <button type="submit">Search</button>
+    </form>
+
+    {% if city_info %}
+    <div class="result">
+        <h2>{{ city_info.name }}</h2>
+
+        <p><b>State:</b> {{ city_info.state }}</p>
+
+        <p>{{ city_info.description }}</p>
+
+        <h3>Tourist Places</h3>
+        <ul>
+            {% for place in city_info.places %}
+            <li>{{ place }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Famous Food</h3>
+        <ul>
+            {% for food in city_info.food %}
+            <li>{{ food }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    {% elif city %}
+    <h3>Sorry! City information not available.</h3>
+    {% endif %}
+
+</div>
+</body>
+</html>
